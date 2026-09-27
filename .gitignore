@@ -1,0 +1,28 @@
+# Entornos y dependencias
+.venv/
+__pycache__/
+*.py[cod]
+
+# Cachés de herramientas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secretos — NUNCA se versionan
+.env
+*.pem
+*.key
+credentials.json
+
+# Artefactos de build
+dist/
+build/
+*.egg-info/
+
+# Editor y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

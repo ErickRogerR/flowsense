@@ -1,0 +1,40 @@
+[project]
+name = "flowsense"
+version = "0.1.0"
+description = "Python engineering practice — typing, testing and project structure"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []                 # todavía no hay dependencias de ejecución
+
+[project.optional-dependencies]
+dev = ["ruff>=0.8", "mypy>=1.13", "pytest>=8.3", "pre-commit>=4.0"]
+
+# Sin este bloque, el paquete no se instala y los imports fallan.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Le dice al constructor dónde está el código, porque no está en la raíz.
+[tool.hatch.build.targets.wheel]
+packages = ["src/flowsense"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]            # para que ordene los imports correctamente
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RET", "C4", "PTH"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]              # assert es normal en tests
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
